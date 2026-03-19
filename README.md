@@ -58,4 +58,8 @@ Contributing
 - Fork, create a feature branch, and open a pull request. Run checks locally and include notes for any external API keys required.
 
 License
+<<<<<<< HEAD
 - MIT (you can change this as needed)
+=======
+- MIT (you can change this as needed)
+>>>>>>> 5065e084f124b2c356992f97fa041a1360ec6967
