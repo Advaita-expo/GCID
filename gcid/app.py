@@ -1,3 +1,6 @@
+import eventlet
+eventlet.monkey_patch()
+
 from flask import Flask, render_template, jsonify
 from services import api_service, risk_model
 from flask_socketio import SocketIO
@@ -5,7 +8,13 @@ import os
 from time import sleep
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
-socketio = SocketIO(app, cors_allowed_origins='*', async_mode='eventlet')
+# Configure Redis message queue for Socket.IO when REDIS_URL is present
+redis_url = os.environ.get('REDIS_URL')
+if redis_url:
+    app.logger.info('Using Redis message queue: %s', redis_url)
+    socketio = SocketIO(app, cors_allowed_origins='*', async_mode='eventlet', message_queue=redis_url)
+else:
+    socketio = SocketIO(app, cors_allowed_origins='*', async_mode='eventlet')
 
 
 @app.route('/')
