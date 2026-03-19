@@ -3,3 +3,4 @@ requests>=2.25
 feedparser>=6.0
 flask-socketio>=5.3
 eventlet>=0.33
+redis>=4.0
