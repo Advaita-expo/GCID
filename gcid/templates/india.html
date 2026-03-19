@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="grid grid-cols-12 gap-6">
+  <div class="col-span-8">
+    <div class="glass-card p-4">
+      <h3 class="text-lg font-semibold neon-blue">India Economic Impact</h3>
+      <div class="mt-4">
+        <canvas id="indiaOilImportChart" height="200"></canvas>
+      </div>
+      <div class="mt-6">
+        <div class="text-sm text-gray-400">Inflation Indicator</div>
+        <div class="w-full bg-[rgba(255,255,255,0.03)] rounded-full h-6 mt-2 overflow-hidden">
+          <div id="inflation-meter" style="width:45%" class="h-6 bg-gradient-to-r from-yellow-400 to-orange-600"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-span-4">
+    <div class="glass-card p-4">
+      <h4 class="text-md font-semibold neon-purple">Trade Route Risk</h4>
+      <p class="text-sm text-gray-300 mt-2">Impact from Strait of Hormuz and other choke points.</p>
+      <div class="mt-4 text-sm text-gray-200">Economic Stress Meter</div>
+      <div class="w-full bg-[rgba(255,255,255,0.03)] rounded h-4 mt-2 overflow-hidden">
+        <div id="stress-meter" style="width:30%" class="h-4 bg-red-500"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

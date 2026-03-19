@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="grid grid-cols-12 gap-6">
+  <div class="col-span-8">
+    <div class="glass-card p-4 mb-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold neon-blue">World Map — Conflict Zones</h3>
+        <div class="text-sm text-gray-400">Live positions • Hover for details</div>
+      </div>
+      <div id="map" style="height:520px; border-radius:12px; overflow:hidden;"></div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4">
+      <div class="glass-card p-4">
+        <div class="text-xs text-gray-400">Active Conflicts</div>
+        <div class="text-3xl font-bold neon-red" id="active-conflicts">—</div>
+      </div>
+      <div class="glass-card p-4">
+        <div class="text-xs text-gray-400">Oil Price (USD)</div>
+        <div class="text-3xl font-bold neon-purple" id="oil-price">—</div>
+      </div>
+      <div class="glass-card p-4">
+        <div class="text-xs text-gray-400">Gold Price (USD)</div>
+        <div class="text-3xl font-bold neon-blue" id="gold-price">—</div>
+      </div>
+    </div>
+
+    <div class="glass-card p-4 mb-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold neon-blue">Economic Charts</h3>
+        <div class="text-sm text-gray-400">Live market series • Updates every 30s</div>
+      </div>
+      <div class="grid grid-cols-4 gap-4">
+        <div class="col-span-3 grid grid-cols-2 gap-4">
+          <div class="p-2 bg-transparent rounded">
+            <canvas id="oilChart" style="height:200px;"></canvas>
+          </div>
+          <div class="p-2 bg-transparent rounded">
+            <canvas id="goldChart" style="height:200px;"></canvas>
+          </div>
+          <div class="p-2 bg-transparent rounded">
+            <canvas id="forexChart" style="height:200px;"></canvas>
+          </div>
+          <div class="p-2 bg-transparent rounded">
+            <canvas id="btcChart" style="height:200px;"></canvas>
+          </div>
+        </div>
+        <div class="col-span-1">
+          <div id="market-summary" class="text-sm text-gray-300">Loading...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-span-4">
+    <div class="glass-card p-4 mb-6">
+      <h4 class="text-md font-semibold neon-purple">Quick Economic Snapshot</h4>
+      <div class="mt-4 space-y-3">
+        <div class="flex justify-between text-sm text-gray-300"><span>USD / INR</span><span id="usd-inr">—</span></div>
+        <div class="flex justify-between text-sm text-gray-300"><span>Bitcoin</span><span id="btc-price">—</span></div>
+        <div class="flex justify-between text-sm text-gray-300"><span>Last Update</span><span id="econ-updated">—</span></div>
+      </div>
+    </div>
+
+    <div class="glass-card p-4">
+      <h4 class="text-md font-semibold neon-red">Notifications</h4>
+      <div id="notifications" class="mt-3 text-sm text-gray-300">No alerts</div>
+    </div>
+    
+    <div class="glass-card p-4 mt-4">
+      <h4 class="text-md font-semibold neon-blue">Conflict Legend & Layers</h4>
+      <div class="mt-3 text-sm text-gray-300">
+        <div id="conflict-legend">Loading conflict legend...</div>
+      </div>
+      <div class="mt-3 text-xs text-gray-400">Toggle layers on the map using the control on the map (top-right).</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

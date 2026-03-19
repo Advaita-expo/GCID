@@ -1,0 +1,41 @@
+/* Minimal Leaflet-related CSS to avoid external image requests and provide basic map UI.
+   This intentionally omits references to external image files so browsers with
+   tracking prevention enabled won't request resources from CDNs.
+*/
+
+.leaflet-container {
+  background: #ffffff;
+  outline: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.leaflet-tile-pane, .leaflet-overlay-pane, .leaflet-shadow-pane, .leaflet-marker-pane, .leaflet-popup-pane {
+  position: absolute;
+  z-index: 0;
+  left: 0; top: 0; right: 0; bottom: 0;
+}
+
+.leaflet-marker-icon, .leaflet-marker-shadow {
+  /* prevent external image loading by default */
+  background-image: none !important;
+  width: 25px;
+  height: 41px;
+  display: block;
+}
+
+.leaflet-control-container .leaflet-control-zoom a {
+  background: rgba(255,255,255,0.9);
+  color: #333;
+  width: 28px; height: 28px; display:inline-block; text-align:center; line-height:28px;
+  border-radius:4px; margin:2px;
+}
+
+.leaflet-popup-content-wrapper { background: #fff; color:#111; }
+.leaflet-popup-tip-container { width: 40px; height: 20px; }
+
+/* MarkerCluster minimal styles (so clusters remain visible) */
+.leaflet-marker-icon .cluster-icon { background: #2b6cb0; color: #fff; border-radius: 50%; padding: 6px 8px; }
+
+/* Map status control spacing */
+.map-status-control { box-shadow: 0 2px 6px rgba(0,0,0,0.4); }

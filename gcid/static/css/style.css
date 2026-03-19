@@ -1,0 +1,32 @@
+/* Futuristic dark theme, neon glows, glassmorphism */
+:root{
+  --bg:#05060a; /* near black */
+  --glass: rgba(255,255,255,0.03);
+  --accent-blue: #4cc9f0;
+  --accent-red: #ff4757;
+  --accent-purple: #9b5cf6;
+}
+html,body{height:100%;background:linear-gradient(180deg,#05060a 0%, #071025 100%);color:#e6eef8}
+.glass-card{background:var(--glass);border:1px solid rgba(255,255,255,0.04);border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.6);backdrop-filter:blur(8px)}
+.nav-link{color:#cfefff}
+.nav-link:hover{background:rgba(76,201,240,0.06);box-shadow:0 4px 18px rgba(76,201,240,0.04)}
+
+/* Neon glows */
+.neon-blue{color:var(--accent-blue);text-shadow:0 0 8px rgba(76,201,240,0.14)}
+.neon-red{color:var(--accent-red);text-shadow:0 0 8px rgba(255,71,87,0.14)}
+.neon-purple{color:var(--accent-purple);text-shadow:0 0 10px rgba(155,92,246,0.12)}
+.neon-green{color:#7efc6a}
+.neon-blue-hover:hover{box-shadow:0 6px 30px rgba(76,201,240,0.12)}
+
+/* Map container tweaks */
+#map{border:1px solid rgba(255,255,255,0.03)}
+
+/* Small utilities */
+.text-small{font-size:0.85rem}
+
+/* Loading skeletons */
+.skeleton{background:linear-gradient(90deg,#0b1118 0%, #0f1720 50%, #0b1118 100%);background-size:200% 100%;animation:shimmer 1.6s infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* Responsive tweaks */
+@media (max-width:900px){.app-root{flex-direction:column}.w-64{width:100%}}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>GCID — Global Conflict Intelligence Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Inline override to avoid external marker image requests (tracking prevention warnings) -->
+    <style>
+      /* Hide default marker image requests from Leaflet CSS when we use circle markers */
+      .leaflet-container .leaflet-marker-icon,
+      .leaflet-container .leaflet-marker-shadow,
+      .leaflet-container .leaflet-control-zoom-in,
+      .leaflet-container .leaflet-control-zoom-out {
+        background-image: none !important;
+      }
+    </style>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet_local.css') }}">
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+      <!-- MarkerCluster JS (we keep the bundled JS from CDN) -->
+      <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster-src.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body class="bg-900 text-gray-200 font-sans">
+    <div class="app-root flex h-screen">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-[rgba(10,10,12,0.6)] backdrop-blur-md border-r border-[rgba(255,255,255,0.04)] p-4">
+        <div class="logo mb-6 text-center text-white">
+          <h1 class="text-2xl font-bold neon-blue">GCID</h1>
+          <p class="text-xs text-gray-400">Global Conflict Intelligence Dashboard</p>
+        </div>
+        <nav class="space-y-1">
+          <a href="/" class="nav-link block py-2 px-3 rounded-lg">Dashboard</a>
+          <a href="/economy" class="nav-link block py-2 px-3 rounded-lg">Economy</a>
+          <a href="/india" class="nav-link block py-2 px-3 rounded-lg">India</a>
+          <a href="/risk" class="nav-link block py-2 px-3 rounded-lg">Risk</a>
+          <a href="/news" class="nav-link block py-2 px-3 rounded-lg">News</a>
+        </nav>
+        <div class="mt-8 text-xs text-gray-400">
+          <div>System: <span id="system-status" class="neon-green">Online</span></div>
+          <div>Auto-refresh: <span id="autorefresh">30s</span></div>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <main class="flex-1 p-6 overflow-auto">
+        <header class="flex items-center justify-between mb-6">
+          <div>
+            <h2 class="text-3xl font-semibold neon-purple">Global Conflict Intelligence</h2>
+            <p class="text-sm text-gray-400">Real-time insights • Alerts • Economic impact</p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="text-right">
+              <div id="clock" class="text-sm text-gray-300"></div>
+              <div class="text-xs text-gray-500">UTC</div>
+            </div>
+            <button id="theme-toggle" class="px-3 py-2 bg-[rgba(255,255,255,0.03)] rounded-md neon-blue-hover">Toggle Theme</button>
+          </div>
+        </header>
+
+        <section id="content">
+          {% block content %}{% endblock %}
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.socket.io/4.6.2/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+  </html>
